@@ -12,6 +12,7 @@ package array;
         你不需要考虑数组中超出新长度后面的元素。*/
 
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
@@ -21,19 +22,32 @@ public class remove_repetitive_nums {
         System.out.println(removeDuplicates(a));
     }
 
-    public static int removeDuplicates(int[] nums) {
+    /*public static int removeDuplicates(int[] nums) {
         int num;
         int t=0;
         LinkedHashSet<Integer> hash = new LinkedHashSet<>();
         for (int i : nums) {
             hash.add(i);
         }
-        num = hash.size();
+        num = hash.size();                                             //思路：利用LinkedHashSet()过滤掉重复数字
         for (int integer : hash) {
             nums[t]=integer;
             t++;
         }
         return num;
+    }*/
+    public static int removeDuplicates(int[] nums) {
+       int t=0;
+        HashMap<Integer,Integer> hash=new HashMap<>();
+       for(int i=0;i<nums.length;i++)
+       {                                                               //思路：利用HashMap方法 Contains（）减少一次循环
+           if(!hash.containsKey(nums[i]))
+           {
+               hash.put(nums[i],i);
+               nums[t]=nums[i];
+               t++;
+           }
+       }
+       return t;
     }
-
 }
