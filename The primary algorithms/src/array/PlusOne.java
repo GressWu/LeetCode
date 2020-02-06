@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class PlusOne {
     public static void main(String[] args) {
         Solution6 so = new Solution6();
-        int[] a = {9};
+        int[] a = {9,9};
         int[] ints = so.plusOne(a);
         System.out.println(Arrays.toString(ints));
     }
@@ -29,16 +29,34 @@ public class PlusOne {
 
 class Solution6 {
     public int[] plusOne(int[] digits) {
-        String s = "";
+      /*  String s = "";
         for (int digit : digits) {
             s += digit;
         }
         int result = Integer.parseInt(s) + 1;
         s = result + "";
-        int[] b = new int[s.length()];
+        int[] b = new int[s.length()];                    //这种方法如果数组过长 就会产生转换错误
         for (int i = 0; i < s.length(); i++) {
             b[i] = s.charAt(i) - '0';
         }
-        return b;
+        return b;*/
+      for (int i=digits.length-1;i>=0;i--)
+      {
+          if(digits[i]==9)
+            digits[i]=0;
+          else {
+              digits[i]++;
+              return digits;
+          }
+      }
+      if(digits[0]==0)
+      {
+          int[] newArry=new int[digits.length+1];
+          newArry[0]=1;
+          for(int i=1;i<digits.length+1;i++)
+              newArry[i]=digits[i-1];
+          return newArry;
+      }
+      return digits;
     }
 }
