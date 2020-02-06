@@ -40,7 +40,7 @@ class Solution6 {
             b[i] = s.charAt(i) - '0';
         }
         return b;*/
-      for (int i=digits.length-1;i>=0;i--)
+     /* for (int i=digits.length-1;i>=0;i--)
       {
           if(digits[i]==9)
             digits[i]=0;
@@ -58,5 +58,19 @@ class Solution6 {
           return newArry;
       }
       return digits;
+    */
+        for (int i=digits.length-1;i>=0;i--)
+        {
+            if(digits[i]==9)
+                digits[i]=0;
+            else {
+                digits[i]++;
+                return digits;                                          //对第二种方法的一种改进
+                                                                        //思路是如果这里的末位不是9，那么直接返回
+            }
+        }
+        int[] result = new int[digits.length+1];
+        result[0]=1;                                                    //如果一直循环结束代表该数原始数据为999...99直接创建新数组返回即可
+        return result;
     }
 }
